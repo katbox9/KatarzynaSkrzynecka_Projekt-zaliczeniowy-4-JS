@@ -4,5 +4,19 @@ html,
 }
 
 .header-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin: 50px;
+}
+
+.logo-container {
+  position: relative;
+}
+
+.coins-container {
+  position: absolute;
+  top: 142px;
+  left: 444px;
+  z-index: 100;
 }
