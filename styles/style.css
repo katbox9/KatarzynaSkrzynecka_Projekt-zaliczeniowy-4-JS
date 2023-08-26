@@ -7,16 +7,24 @@ html,
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 50px;
+  margin: 30px;
 }
 
 .logo-container {
   position: relative;
 }
 
-.coins-container {
+.coins {
   position: absolute;
-  top: 142px;
-  left: 444px;
+  bottom: 3px;
+  left: 73px;
   z-index: 100;
 }
+
+.output {
+  margin-bottom: 20px;
+}
+
+/* .revenues-container,
+.expensis-container {
+} */

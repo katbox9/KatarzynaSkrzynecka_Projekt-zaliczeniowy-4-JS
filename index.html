@@ -26,16 +26,64 @@
           width="100px"
           height="100px"
         />
-      </div>
-      <div class="coins-container">
-        <i
-          class="fa-solid fa-coins fa-beat-fade fa-xl"
-          style="color: #c8c214"
-        ></i>
+        <div class="coins">
+          <i
+            class="fa-solid fa-coins fa-beat-fade fa-xl"
+            style="color: #c8c214"
+          ></i>
+        </div>
       </div>
     </header>
-    <output>Możesz jeszcze wydać ... PLN</output>
-    <main></main>
+    <center>
+      <output id="result-output" class="output"
+        >Możesz jeszcze wydać ... PLN</output
+      >
+    </center>
+    <main>
+      <div class="container container-md text-center">
+        <div class="row">
+          <div class="col revenues-container">
+            <h5>PRZYCHODY</h5>
+            <form id="revenues-form">
+              <input type="text" required name="revenue-name" id="revenue-id" />
+              <input
+                type="number"
+                required
+                min="0.01"
+                step="0.01"
+                name="revenue-name"
+                id="revenue-id"
+              />
+              <button
+                class="submit-btn"
+                type="submit"
+                id="revenues-btn"
+              ></button>
+            </form>
+          </div>
+
+          <div class="col expenses-container">
+            <h5>WYDATKI</h5>
+            <form id="expenses-form">
+              <input type="text" required name="expens-name" id="expens-id" />
+              <input
+                type="number"
+                required
+                min="0.01"
+                step="0.01"
+                name="expens-name"
+                id="expens-id"
+              />
+              <button
+                class="submit-btn"
+                type="submit"
+                id="expenses-btn"
+              ></button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </main>
 
     <footer></footer>
 
