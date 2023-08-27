@@ -34,52 +34,64 @@
         </div>
       </div>
     </header>
-    <center>
+    <div class="container text-center">
       <output id="result-output" class="output"
         >Możesz jeszcze wydać ... PLN</output
       >
-    </center>
+    </div>
     <main>
       <div class="container container-md text-center">
         <div class="row">
           <div class="col revenues-container">
             <h5>PRZYCHODY</h5>
             <form id="revenues-form">
-              <input type="text" required name="revenue-name" id="revenue-id" />
+              <input
+                type="text"
+                required
+                name="revenueName"
+                id="revenue-name-id"
+                placeholder="Nazwa przychodu"
+                minlength="3"
+              />
               <input
                 type="number"
                 required
                 min="0.01"
                 step="0.01"
-                name="revenue-name"
-                id="revenue-id"
+                name="revenueAmount"
+                id="revenue-amount-id"
+                placeholder="Kwota"
               />
-              <button
-                class="submit-btn"
-                type="submit"
-                id="revenues-btn"
-              ></button>
+              <button class="submit-btn" type="submit">Dodaj</button>
             </form>
+            <ul id="revenues-list"></ul>
+            <output id="revenue-sum">Suma przychodów = 0 PLN</output>
           </div>
 
           <div class="col expenses-container">
             <h5>WYDATKI</h5>
             <form id="expenses-form">
-              <input type="text" required name="expens-name" id="expens-id" />
+              <input
+                type="text"
+                required
+                name="expensName"
+                id="expens-name-id"
+                placeholder="Nazwa wydatku"
+                minlength="3"
+              />
               <input
                 type="number"
                 required
                 min="0.01"
                 step="0.01"
-                name="expens-name"
-                id="expens-id"
+                name="expensAmount"
+                id="expens-amount-id"
+                placeholder="Kwota"
               />
-              <button
-                class="submit-btn"
-                type="submit"
-                id="expenses-btn"
-              ></button>
+              <button class="submit-btn" type="submit">Dodaj</button>
             </form>
+            <ul id="expenses-list"></ul>
+            <output id="expenses-sum">Suma wydatków = 0 PLN</output>
           </div>
         </div>
       </div>
