@@ -44,7 +44,7 @@
         <div class="row">
           <div class="col revenues-container">
             <h5>PRZYCHODY</h5>
-            <form id="revenues-form">
+            <form id="revenues-form" autocomplete="off">
               <input
                 type="text"
                 required
@@ -64,13 +64,13 @@
               />
               <button class="submit-btn" type="submit">Dodaj</button>
             </form>
-            <ul id="revenues-list"></ul>
+            <ul class="revenue-list" id="revenues-list"></ul>
             <output id="revenue-sum">Suma przychodów = 0 PLN</output>
           </div>
 
           <div class="col expenses-container">
             <h5>WYDATKI</h5>
-            <form id="expenses-form">
+            <form id="expenses-form" autocomplete="off">
               <input
                 type="text"
                 required
@@ -90,7 +90,7 @@
               />
               <button class="submit-btn" type="submit">Dodaj</button>
             </form>
-            <ul id="expenses-list"></ul>
+            <ul class="expenses-list" id="expenses-list"></ul>
             <output id="expenses-sum">Suma wydatków = 0 PLN</output>
           </div>
         </div>

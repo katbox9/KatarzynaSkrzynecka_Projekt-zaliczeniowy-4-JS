@@ -28,3 +28,12 @@ html,
 /* .revenues-container,
 .expensis-container {
 } */
+
+.revenue-list,
+.expenses-list {
+  list-style-type: square;
+}
+
+.btn {
+  width: 50px;
+}
