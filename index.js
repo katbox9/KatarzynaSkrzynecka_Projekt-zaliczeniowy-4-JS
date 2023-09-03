@@ -11,7 +11,7 @@ function renderIncomeRevenuesList() {
   incomesRevenues.forEach((income) => {
     const item = document.createElement("li");
     item.textContent = `${income.title}: ${income.amount} PLN`;
-
+    item.classList.add("revenue-item");
     const editBtn = document.createElement("button");
     editBtn.textContent = "Edytuj";
     // editBtn.setAttribute("type", "button");

@@ -35,5 +35,9 @@ html,
 }
 
 .btn {
-  width: 50px;
+  margin-left: 25px;
+  margin-top: 5px;
 }
+/* .revenue-item {
+  margin-right: 20px;
+} */
