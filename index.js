@@ -18,12 +18,12 @@ function renderIncomeRevenuesList() {
 
     const deleteBtn = document.createElement("button");
     deleteBtn.textContent = "Usuń";
-    editBtn.setAttribute("type", "reset");
+    deleteBtn.setAttribute("type", "reset");
     deleteBtn.classList.add("btn", "btn-danger");
 
-    // document.getElementById("li-item");
+    // const itemToReset = document.getElementById("li-item");
     // deleteBtn.addEventListener("click", () => {
-    //   item.reset();
+    //   itemToReset.reset();
     // });
 
     incomeRevenuesList.appendChild(item);
@@ -104,4 +104,11 @@ function totalExpenses() {
   const total = incomesExpenses.reduce((prev, curr) => prev + curr.amount, 0);
   const expenseTotal = document.getElementById("expenses-sum");
   expenseTotal.textContent = `Suma wydatków = ${total} PLN`;
+}
+
+// FINAL RESULT
+function totalResult(totalRevenues, totalExpenses) {
+  const total = totalRevenues - totalExpenses;
+  const totalResult = document.getElementById("result-output");
+  totalResult.textContent = `Możesz jeszcze wydać ${total} PLN`;
 }
