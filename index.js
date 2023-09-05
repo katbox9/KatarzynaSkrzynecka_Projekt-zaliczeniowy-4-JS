@@ -9,6 +9,7 @@ function renderIncomeRevenuesList() {
     const item = document.createElement("li");
     item.textContent = `${income.title}: ${income.amount} PLN`;
     item.classList.add("revenue-item");
+    // item.setAttribute("id", "li-item");
 
     const editBtn = document.createElement("button");
     editBtn.textContent = "Edytuj";
@@ -19,6 +20,11 @@ function renderIncomeRevenuesList() {
     deleteBtn.textContent = "Usuń";
     editBtn.setAttribute("type", "reset");
     deleteBtn.classList.add("btn", "btn-danger");
+
+    // document.getElementById("li-item");
+    // deleteBtn.addEventListener("click", () => {
+    //   item.reset();
+    // });
 
     incomeRevenuesList.appendChild(item);
     item.appendChild(editBtn);
