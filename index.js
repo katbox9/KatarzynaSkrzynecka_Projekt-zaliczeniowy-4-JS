@@ -21,10 +21,15 @@ function renderIncomeRevenuesList() {
     deleteBtn.setAttribute("type", "reset");
     deleteBtn.classList.add("btn", "btn-danger");
 
-    // const itemToReset = document.getElementById("li-item");
-    // deleteBtn.addEventListener("click", () => {
-    //   itemToReset.reset();
-    // });
+    deleteBtn.addEventListener("click", () => {
+      const indexToDelete = incomesRevenues.findIndex(
+        (item) => item.id === income.id
+      );
+      incomesRevenues.splice(indexToDelete, 1);
+
+      totalRevenues();
+      renderIncomeRevenuesList();
+    });
 
     incomeRevenuesList.appendChild(item);
     item.appendChild(editBtn);
@@ -76,6 +81,16 @@ function renderIncomeExpensesList() {
     deleteBtn.textContent = "Usuń";
     editBtn.setAttribute("type", "reset");
     deleteBtn.classList.add("btn", "btn-danger");
+
+    deleteBtn.addEventListener("click", () => {
+      const indexToDelete = incomesExpenses.findIndex(
+        (item) => item.id === income.id
+      );
+      incomesExpenses.splice(indexToDelete, 1);
+
+      totalExpenses();
+      renderIncomeExpensesList();
+    });
 
     incomeExpensesList.appendChild(item);
     item.appendChild(editBtn);
