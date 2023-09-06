@@ -97,6 +97,30 @@
       </div>
     </main>
 
+    <div id="edit-container" class="edit-container hidden">
+      <form id="edit-form" autocomplete="off">
+        <input
+          type="text"
+          required
+          name="editTitle"
+          id="edit-name-id"
+          placeholder="Nazwa"
+          minlength="3"
+        />
+        <input
+          type="number"
+          required
+          min="0.01"
+          step="0.01"
+          name="editAmount"
+          id="edit-amount-id"
+          placeholder="Kwota"
+        />
+        <button id="cancel-btn" class="submit-btn" type="reset">Anuluj</button>
+        <button id="save-btn" class="submit-btn">Zapisz</button>
+      </form>
+    </div>
+
     <footer></footer>
 
     <script
