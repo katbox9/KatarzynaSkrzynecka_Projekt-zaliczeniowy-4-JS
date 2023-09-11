@@ -98,7 +98,19 @@ function renderIncomeExpensesList() {
     editBtn.addEventListener("click", () => {
       const editModal = document.getElementById("edit-container");
       editModal.classList.remove("hidden");
-      console.log(editModal);
+      const editName = document.getElementById("edit-name-id");
+      const editAmount = document.getElementById("edit-amount-id");
+      editName.value = income.title;
+      editAmount.value = income.amount;
+      const cancelBtn = document.getElementById("cancel-btn");
+      cancelBtn.addEventListener("click", () => {
+        editModal.classList.add("hidden");
+      });
+
+      const saveBtn = document.getElementById("save-btn");
+      saveBtn.addEventListener("click", () => {
+        editModal.classList.add("hidden");
+      });
     });
 
     const deleteBtn = document.createElement("button");

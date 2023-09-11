@@ -38,9 +38,13 @@ html,
   margin-left: 25px;
   margin-top: 5px;
 }
-/* .revenue-item {
-  margin-right: 20px;
-} */
+
+.edit-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* border: 3px, solid, black; */
+}
 
 .hidden {
   display: none;
