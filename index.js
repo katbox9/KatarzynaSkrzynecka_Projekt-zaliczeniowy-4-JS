@@ -2,6 +2,7 @@
 const incomeRevenuesForm = document.getElementById("revenues-form");
 const incomeRevenuesList = document.getElementById("revenues-list");
 const incomesRevenues = [];
+const editForm = document.getElementById("edit-form");
 
 function renderIncomeRevenuesList() {
   incomeRevenuesList.innerHTML = "";
@@ -28,9 +29,28 @@ function renderIncomeRevenuesList() {
         editModal.classList.add("hidden");
       });
 
-      const saveBtn = document.getElementById("save-btn");
-      saveBtn.addEventListener("click", () => {
+      // const saveBtn = document.getElementById("save-btn");
+      editForm.addEventListener("submit", (event) => {
+        event.preventDefault();
         editModal.classList.add("hidden");
+        const itemToEdit = incomesRevenues.find(
+          (item) => item.id === income.id
+        );
+        const newTitle = event.target.editTitle.value;
+        const newAmount = event.target.editAmount.value;
+
+        itemToEdit.title = newTitle;
+        itemToEdit.amount = Number(newAmount);
+
+        const saveBtn = document.getElementById("save-btn");
+        saveBtn.addEventListener("click", () => {
+          editModal.classList.add("hidden");
+          totalRevenues();
+          renderIncomeRevenuesList();
+        });
+
+        totalRevenues();
+        renderIncomeRevenuesList();
       });
     });
 
@@ -76,6 +96,7 @@ function totalRevenues() {
   const total = incomesRevenues.reduce((prev, curr) => prev + curr.amount, 0);
   const revenueTotal = document.getElementById("revenue-sum");
   revenueTotal.textContent = `Suma przychodów = ${total} PLN`;
+  totalResult();
 }
 
 // EXPENSES
@@ -107,9 +128,27 @@ function renderIncomeExpensesList() {
         editModal.classList.add("hidden");
       });
 
-      const saveBtn = document.getElementById("save-btn");
-      saveBtn.addEventListener("click", () => {
+      editForm.addEventListener("submit", (event) => {
+        event.preventDefault();
         editModal.classList.add("hidden");
+        const itemToEdit = incomesExpenses.find(
+          (item) => item.id === income.id
+        );
+        const newTitle = event.target.editTitle.value;
+        const newAmount = event.target.editAmount.value;
+
+        itemToEdit.title = newTitle;
+        itemToEdit.amount = Number(newAmount);
+
+        const saveBtn = document.getElementById("save-btn");
+        saveBtn.addEventListener("click", () => {
+          editModal.classList.add("hidden");
+          totalExpenses();
+          renderIncomeExpensesList();
+        });
+
+        totalExpenses();
+        renderIncomeExpensesList();
       });
     });
 
@@ -155,11 +194,28 @@ function totalExpenses() {
   const total = incomesExpenses.reduce((prev, curr) => prev + curr.amount, 0);
   const expenseTotal = document.getElementById("expenses-sum");
   expenseTotal.textContent = `Suma wydatków = ${total} PLN`;
+  totalResult();
 }
 
 // FINAL RESULT
-function totalResult(totalRevenues, totalExpenses) {
+function totalResult() {
+  const totalExpenses = incomesExpenses.reduce(
+    (prev, curr) => prev + curr.amount,
+    0
+  );
+  const totalRevenues = incomesRevenues.reduce(
+    (prev, curr) => prev + curr.amount,
+    0
+  );
   const total = totalRevenues - totalExpenses;
   const totalResult = document.getElementById("result-output");
-  totalResult.textContent = `Możesz jeszcze wydać ${total} PLN`;
+  if (total > 0) {
+    return (totalResult.textContent = `Możesz jeszcze wydać ${total} PLN.`);
+  }
+  if (total < 0) {
+    return (totalResult.textContent = `Bilans jest ujemny. Jesteś na minusie ${Math.abs(
+      total
+    )} PLN.`);
+  }
+  return (totalResult.textContent = `Bilans wynosi zero.`);
 }
