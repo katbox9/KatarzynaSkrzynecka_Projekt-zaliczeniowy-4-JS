@@ -25,10 +25,6 @@ html,
   margin-bottom: 20px;
 }
 
-/* .revenues-container,
-.expensis-container {
-} */
-
 .revenue-list,
 .expenses-list {
   list-style-type: square;
