@@ -3,6 +3,10 @@ const incomeRevenuesForm = document.getElementById("revenues-form");
 const incomeRevenuesList = document.getElementById("revenues-list");
 const incomesRevenues = [];
 const editForm = document.getElementById("edit-form");
+const editModal = document.getElementById("edit-container");
+const editName = document.getElementById("edit-name-id");
+const editAmount = document.getElementById("edit-amount-id");
+const cancelBtn = document.getElementById("cancel-btn");
 
 function renderIncomeRevenuesList() {
   incomeRevenuesList.innerHTML = "";
@@ -10,49 +14,13 @@ function renderIncomeRevenuesList() {
     const item = document.createElement("li");
     item.textContent = `${income.title}: ${income.amount} PLN`;
     item.classList.add("revenue-item");
-    // item.setAttribute("id", "li-item");
 
     const editBtn = document.createElement("button");
     editBtn.textContent = "Edytuj";
     editBtn.setAttribute("type", "button");
     editBtn.classList.add("btn", "btn-primary");
 
-    editBtn.addEventListener("click", () => {
-      const editModal = document.getElementById("edit-container");
-      editModal.classList.remove("hidden");
-      const editName = document.getElementById("edit-name-id");
-      const editAmount = document.getElementById("edit-amount-id");
-      editName.value = income.title;
-      editAmount.value = income.amount;
-      const cancelBtn = document.getElementById("cancel-btn");
-      cancelBtn.addEventListener("click", () => {
-        editModal.classList.add("hidden");
-      });
-
-      // const saveBtn = document.getElementById("save-btn");
-      editForm.addEventListener("submit", (event) => {
-        event.preventDefault();
-        editModal.classList.add("hidden");
-        const itemToEdit = incomesRevenues.find(
-          (item) => item.id === income.id
-        );
-        const newTitle = event.target.editTitle.value;
-        const newAmount = event.target.editAmount.value;
-
-        itemToEdit.title = newTitle;
-        itemToEdit.amount = Number(newAmount);
-
-        const saveBtn = document.getElementById("save-btn");
-        saveBtn.addEventListener("click", () => {
-          editModal.classList.add("hidden");
-          totalRevenues();
-          renderIncomeRevenuesList();
-        });
-
-        totalRevenues();
-        renderIncomeRevenuesList();
-      });
-    });
+    editBtn.addEventListener("click", () => handleEditItem("revenue", income));
 
     const deleteBtn = document.createElement("button");
     deleteBtn.textContent = "Usuń";
@@ -74,6 +42,48 @@ function renderIncomeRevenuesList() {
     item.appendChild(deleteBtn);
   });
 }
+
+const handleEditItem = (actionType, changedItem) => {
+  editForm.dataset.type = actionType;
+  editForm.dataset.id = changedItem.id;
+
+  editModal.classList.remove("hidden");
+
+  editName.value = changedItem.title;
+  editAmount.value = changedItem.amount;
+
+  cancelBtn.addEventListener("click", () => {
+    editModal.classList.add("hidden");
+  });
+};
+
+editForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+  const id = Number(event.target.dataset.id);
+  const type = event.target.dataset.type;
+  const isRevenue = type === "revenue";
+  const changedData = isRevenue ? incomesRevenues : incomesExpenses;
+
+  editModal.classList.add("hidden");
+  const itemToEdit = changedData.find((item) => item.id === id);
+  const newTitle = event.target.editTitle.value;
+  const newAmount = event.target.editAmount.value;
+
+  itemToEdit.title = newTitle;
+  itemToEdit.amount = Number(newAmount);
+
+  isRevenue ? updateRevenuesData() : updateExpensesData();
+});
+
+const updateRevenuesData = () => {
+  totalRevenues();
+  renderIncomeRevenuesList();
+};
+
+const updateExpensesData = () => {
+  totalExpenses();
+  renderIncomeExpensesList();
+};
 
 incomeRevenuesForm.addEventListener("submit", (event) => {
   event.preventDefault();
@@ -116,41 +126,7 @@ function renderIncomeExpensesList() {
     editBtn.setAttribute("type", "button");
     editBtn.classList.add("btn", "btn-primary");
 
-    editBtn.addEventListener("click", () => {
-      const editModal = document.getElementById("edit-container");
-      editModal.classList.remove("hidden");
-      const editName = document.getElementById("edit-name-id");
-      const editAmount = document.getElementById("edit-amount-id");
-      editName.value = income.title;
-      editAmount.value = income.amount;
-      const cancelBtn = document.getElementById("cancel-btn");
-      cancelBtn.addEventListener("click", () => {
-        editModal.classList.add("hidden");
-      });
-
-      editForm.addEventListener("submit", (event) => {
-        event.preventDefault();
-        editModal.classList.add("hidden");
-        const itemToEdit = incomesExpenses.find(
-          (item) => item.id === income.id
-        );
-        const newTitle = event.target.editTitle.value;
-        const newAmount = event.target.editAmount.value;
-
-        itemToEdit.title = newTitle;
-        itemToEdit.amount = Number(newAmount);
-
-        const saveBtn = document.getElementById("save-btn");
-        saveBtn.addEventListener("click", () => {
-          editModal.classList.add("hidden");
-          totalExpenses();
-          renderIncomeExpensesList();
-        });
-
-        totalExpenses();
-        renderIncomeExpensesList();
-      });
-    });
+    editBtn.addEventListener("click", () => handleEditItem("expense", income));
 
     const deleteBtn = document.createElement("button");
     deleteBtn.textContent = "Usuń";
