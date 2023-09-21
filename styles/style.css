@@ -27,7 +27,7 @@ html,
 
 .revenue-list,
 .expenses-list {
-  list-style-type: square;
+  list-style-type: none;
 }
 
 .btn {

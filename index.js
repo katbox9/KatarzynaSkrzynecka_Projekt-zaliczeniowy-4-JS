@@ -104,8 +104,9 @@ incomeRevenuesForm.addEventListener("submit", (event) => {
 
 function totalRevenues() {
   const total = incomesRevenues.reduce((prev, curr) => prev + curr.amount, 0);
+  const roundedRevenuesTotal = total.toFixed(2);
   const revenueTotal = document.getElementById("revenue-sum");
-  revenueTotal.textContent = `Suma przychodów = ${total} PLN`;
+  revenueTotal.textContent = `Suma przychodów = ${roundedRevenuesTotal} PLN`;
   totalResult();
 }
 
@@ -168,8 +169,9 @@ incomeExpensesForm.addEventListener("submit", (event) => {
 
 function totalExpenses() {
   const total = incomesExpenses.reduce((prev, curr) => prev + curr.amount, 0);
+  const roundedExpenseTotal = total.toFixed(2);
   const expenseTotal = document.getElementById("expenses-sum");
-  expenseTotal.textContent = `Suma wydatków = ${total} PLN`;
+  expenseTotal.textContent = `Suma wydatków = ${roundedExpenseTotal} PLN`;
   totalResult();
 }
 
@@ -184,13 +186,14 @@ function totalResult() {
     0
   );
   const total = totalRevenues - totalExpenses;
+  const roundedTotal = total.toFixed(2);
   const totalResult = document.getElementById("result-output");
-  if (total > 0) {
-    return (totalResult.textContent = `Możesz jeszcze wydać ${total} PLN.`);
+  if (roundedTotal > 0) {
+    return (totalResult.textContent = `Możesz jeszcze wydać ${roundedTotal} PLN.`);
   }
-  if (total < 0) {
+  if (roundedTotal < 0) {
     return (totalResult.textContent = `Bilans jest ujemny. Jesteś na minusie ${Math.abs(
-      total
+      roundedTotal
     )} PLN.`);
   }
   return (totalResult.textContent = `Bilans wynosi zero.`);
