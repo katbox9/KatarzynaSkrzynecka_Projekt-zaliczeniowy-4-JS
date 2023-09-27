@@ -12,7 +12,9 @@ function renderIncomeRevenuesList() {
   incomeRevenuesList.innerHTML = "";
   incomesRevenues.forEach((income) => {
     const item = document.createElement("li");
-    item.textContent = `${income.title}: ${income.amount} PLN`;
+    item.textContent = `${income.title}: ${Number(income.amount).toFixed(
+      2
+    )} PLN`;
     item.classList.add("revenue-item");
 
     const editBtn = document.createElement("button");
@@ -119,7 +121,9 @@ function renderIncomeExpensesList() {
   incomeExpensesList.innerHTML = "";
   incomesExpenses.forEach((income) => {
     const item = document.createElement("li");
-    item.textContent = `${income.title}: ${income.amount} PLN`;
+    item.textContent = `${income.title}: ${Number(income.amount).toFixed(
+      2
+    )} PLN`;
     item.classList.add("expense-item");
 
     const editBtn = document.createElement("button");
